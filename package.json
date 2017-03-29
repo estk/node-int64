@@ -14,7 +14,7 @@
   "lib": ".",
   "main": "./dist/index.js",
   "typings": "./dist/index.d.ts",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "scripts": {
     "test": "nodeunit dist/test.js",
     "lint": "tslint --fix ./src/*.ts ./src/**/*.ts",
