@@ -69,7 +69,7 @@ export default class Int64 {
       this.buffer = a1
       this.offset = a2
     } else {
-      this.buffer = this.buffer || new Buffer(8)
+      this.buffer = this.buffer || Buffer.alloc(8)
       this.offset = 0
       this.setValue.apply(this, arguments)
     }
@@ -223,7 +223,7 @@ export default class Int64 {
   toBuffer(rawBuffer: boolean = false) {
     if (rawBuffer && this.offset === 0) { return this.buffer }
 
-    let out = new Buffer(8)
+    let out = Buffer.alloc(8)
     this.buffer.copy(out, 0, this.offset, this.offset + 8)
     return out
   }
