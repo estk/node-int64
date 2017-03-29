@@ -60,11 +60,15 @@ export function testValueRepresentation(test: Test) {
         x = new Int64(a[0])
       } else if (a.length === 2) {
         x = new Int64(a[0], a[1])
+      } else {
+        throw new Error("Invalid arg count")
       }
     } else {
       x = new Int64(a)
     }
 
+    console.log("eql", x.toOctetString(), octets)
+    console.log("eql", x.toNumber(), number)
     test.equal(x.toOctetString(), octets, 'Constuctor with ' + args.join(', '))
     test.equal(x.toNumber(true), number)
   }
@@ -107,6 +111,7 @@ export function testCompare(test: Test) {
   let zero = new Int64(0, 0)
   let intMaxMinusOne = new Int64(2147483647, 4294967294)
   let intMax = new Int64(2147483647, 4294967295)
+  console.log({intMin, intMinPlusOne, intMax, intMaxMinusOne})
   assert(intMin.compare(intMinPlusOne) < 0, "INT64_MIN is not less than INT64_MIN+1")
   assert(intMin.compare(zero) < 0, "INT64_MIN is not less than 0")
   assert(intMax.compare(new Int64(intMin.compare(zero))) > 0, "INT64_MIN is not less than INT64_MAX")

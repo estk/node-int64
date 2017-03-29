@@ -69,7 +69,7 @@ export default class Int64 {
       this.buffer = a1
       this.offset = a2
     } else {
-      this.buffer = new Buffer(8)
+      this.buffer = this.buffer || new Buffer(8)
       this.offset = a2
       this.setValue.apply(this, arguments)
     }
@@ -208,6 +208,7 @@ export default class Int64 {
     const out = new Array(8)
     const b = this.buffer
     const o = this.offset
+    console.log({b, o})
     for (let i = 0; i < 8; i++) {
       out[i] = _HEX[b[o + i]]
     }
