@@ -18,13 +18,13 @@ export function testBufferToString(test: Test) {
 
 export function testBufferCopy(test: Test) {
   let src = new Int64(0xfffaffff, 0xfffff700)
-  let dst = new Buffer(8)
+  let dst = Buffer.alloc(8)
 
   src.copy(dst)
 
   test.deepEqual(
     dst,
-    new Buffer([0xff, 0xfa, 0xff, 0xff, 0xff, 0xff, 0xf7, 0x00]),
+    Buffer.from([0xff, 0xfa, 0xff, 0xff, 0xff, 0xff, 0xf7, 0x00]),
     'Copy to buffer',
   )
 
@@ -49,7 +49,9 @@ export function testValueRepresentation(test: Test) {
   // Test constructor argments
 
   for (let i = 0; i < args.length; i += 3) {
-    let a = args[i], octets = args[i + 1], number = args[i + 2]
+    let a = args[i]
+    const octets = args[i + 1]
+    const num = args[i + 2]
 
     // Create instance
 
@@ -58,7 +60,7 @@ export function testValueRepresentation(test: Test) {
       if (a.length === 1) {
         x = new Int64(a[0])
       } else if (a.length === 2) {
-        a = a as Array<number>
+        a = a as number[]
         x = new Int64(a[0], a[1])
       } else {
         throw new Error("Invalid arg count")
@@ -68,14 +70,14 @@ export function testValueRepresentation(test: Test) {
     }
 
     test.equal(x.toOctetString(), octets, 'Constuctor with ' + args.join(', '))
-    test.equal(x.toNumber(true), number)
+    test.equal(x.toNumber(true), num)
   }
 
   test.done()
 }
 
 export function testBufferOffsets(test: Test) {
-  let sourceBuffer = new Buffer(16)
+  let sourceBuffer = Buffer.alloc(16)
   sourceBuffer.writeUInt32BE(0xfffaffff, 2)
   sourceBuffer.writeUInt32BE(0xfffff700, 6)
 
@@ -85,7 +87,7 @@ export function testBufferOffsets(test: Test) {
     'Construct from offset',
   )
 
-  let targetBuffer = new Buffer(16)
+  let targetBuffer = Buffer.alloc(16)
   int.copy(targetBuffer, 4)
   assert.equal(
     targetBuffer.slice(4, 12).toString('hex'), 'fffafffffffff700',

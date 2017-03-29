@@ -1,7 +1,7 @@
 {
   "name": "nint64",
   "description": "Support for representing 64-bit integers in JavaScript",
-  "url": "http://github.com/estk/node-int64",
+  "url": "http://github.com/estk/nint64",
   "keywords": [
     "math",
     "integer",
@@ -19,7 +19,8 @@
     "test": "nodeunit dist/test.js",
     "lint": "tslint --fix ./src/*.ts ./src/**/*.ts",
     "build": "tsc",
-    "watch": "tsc --watch"
+    "watch": "tsc --watch",
+    "pre-publish": "npm run build && npm run lint && npm run test"
   },
   "repository": {
     "type": "git",
