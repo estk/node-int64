@@ -12,16 +12,24 @@
   "dependencies": {},
   "license": "MIT",
   "lib": ".",
-  "main": "./Int64.js",
+  "main": "./dist/index.js",
+  "typings": "./dist/index.d.ts",
   "version": "0.4.0",
   "scripts": {
-    "test": "nodeunit test.js"
+    "test": "nodeunit dist/test.js",
+    "lint": "tslint --fix ./src/*.ts ./src/**/*.ts",
+    "build": "tsc",
+    "watch": "tsc --watch"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/broofa/node-int64"
   },
   "devDependencies": {
-    "nodeunit": "^0.9.0"
+    "@types/node": "^7.0.12",
+    "@types/nodeunit": "0.0.30",
+    "nodeunit": "^0.9.0",
+    "tslint": "^4.5.1",
+    "typescript": "^2.2.2"
   }
 }

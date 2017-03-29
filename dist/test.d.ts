@@ -1,0 +1,9 @@
+import { Test } from 'nodeunit';
+export declare function setUp(done: Function): void;
+export declare function testBufferToString(test: Test): void;
+export declare function testBufferCopy(test: Test): void;
+export declare function testValueRepresentation(test: Test): void;
+export declare function testBufferOffsets(test: Test): void;
+export declare function testInstanceOf(test: Test): void;
+export declare function testCompare(test: Test): void;
+export declare function testEquals(test: Test): void;
