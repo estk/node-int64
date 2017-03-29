@@ -1,7 +1,6 @@
 {
   "compilerOptions": {
     "declaration": true,
-    "allowJs": true,
     "target": "es6",
     "module": "commonjs",
     "moduleResolution": "node",

@@ -60,17 +60,17 @@ export default class Int64 {
   public buffer: Buffer
   public offset: number
 
-  constructor(a1: Buffer, offset?: number)
-  constructor(a1: string)
-  constructor(a1: number)
+  constructor()
+  constructor(a1: string|number)
   constructor(a1: number, a2?: number)
+  constructor(a1: Buffer, offset?: number)
   constructor(a1?: Buffer|string|number, a2: number = 0) {
     if (a1 instanceof Buffer) {
       this.buffer = a1
       this.offset = a2
     } else {
       this.buffer = this.buffer || new Buffer(8)
-      this.offset = a2
+      this.offset = 0
       this.setValue.apply(this, arguments)
     }
   }
@@ -208,7 +208,6 @@ export default class Int64 {
     const out = new Array(8)
     const b = this.buffer
     const o = this.offset
-    console.log({b, o})
     for (let i = 0; i < 8; i++) {
       out[i] = _HEX[b[o + i]]
     }
@@ -225,7 +224,6 @@ export default class Int64 {
     if (rawBuffer && this.offset === 0) { return this.buffer }
 
     let out = new Buffer(8)
-    console.log({buf: this.buffer, off: this.offset})
     this.buffer.copy(out, 0, this.offset, this.offset + 8)
     return out
   }
